@@ -20,8 +20,13 @@ var connection = mysql.createConnection({
 
 connection.connect()
 
-router.post('/', function(req, res) {
+router.post('/:id', function(req, res) {
+  var id = req.params.id
   var queryString = 'delete from post where postNum = ?;'
+
+  if(req.user !== id) {
+    return res.json({'result' : false})
+  }
 
   var query = connection.query(queryString, [req.body.postNum], function(err, rows) {
     if(err) throw err

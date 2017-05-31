@@ -21,10 +21,13 @@ router.use('/join', join)
 router.use('/login', login)
 router.use('/logout', logout)
 router.use('/upload',upload)
-router.use('/delete', deletePost)
+router.use('/delete/:id', deletePost)
 router.use('/like', like)
-router.use('/main', main)
 router.use('/pull', pull)
+router.use('/:id', function(req, res, next) {
+	req.id = req.params.id
+	next()
+},main)
 
 module.exports = router;
 

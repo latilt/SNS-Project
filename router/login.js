@@ -31,6 +31,7 @@ passport.serializeUser(function(user, done){
 })
 
 passport.deserializeUser(function(id, done){
+  console.log("login deserializeUser", id)
 	done(null, id);
 })
 
@@ -42,7 +43,7 @@ passport.use('local-login', new LocalStrategy({
 		var query = connection.query('select pw from USER where id=?', [id], function(err, rows){
 			if(err) return done(err)
 			if(rows.length){
-				if(password === rows[0].pw){  
+				if(password === rows[0].pw){
 				return done(null, {'id':id})
 				} else {
 				return done(null, false, {message: '비밀번호 다름'})
@@ -74,16 +75,12 @@ router.post('/', function(req, res, next){
 
 module.exports = router;
 
-app.use(session({
-	secret: 'keyboard cat',
-	resave: false,
-	saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-
-
-
-
+// app.use(session({
+// 	secret: 'keyboard cat',
+// 	resave: false,
+// 	saveUninitialized: true
+// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+//
+//

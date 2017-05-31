@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function(){
       }
     }
     var data = {"postNum" : curId};
-    util.sendAjax("POST", "/delete", data, deletePost, "application/json");
+    util.sendAjax("POST", "/delete" + window.location.pathname, data, deletePost, "application/json");
   });
 
   var curId;
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function(){
       postWrap.innerHTML = postWrapTemplate;
     }
 
-    util.sendAjax("POST", "/pull", data, fullingData, "application/json");
+    util.sendAjax("POST", "/pull" + window.location.pathname, data, fullingData, "application/json");
   });
 
 });
