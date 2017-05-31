@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function(){
       }
     }
     var data = {"postNum" : curId};
-    util.sendAjax("POST", "/delete", data, deletePost, "application/json");
+    util.sendAjax("POST", "/delete" + window.location.pathname, data, deletePost, "application/json");
   });
 
   var curId;
